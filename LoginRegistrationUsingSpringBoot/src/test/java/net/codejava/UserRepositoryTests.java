@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.test.annotation.Rollback;
 
 @DataJpaTest
@@ -35,5 +36,14 @@ public class UserRepositoryTests {
 		
 		assertThat(existUser.getEmail()).isEqualTo(user.getEmail());
 		
+	}
+	
+	@Test
+	public void testFindUserByEmail() {
+		String email = "abc@gmail.com";
+				
+		User user = repo.findbyEmail(email);
+		
+		assertThat(user).isNotNull();
 	}
 }

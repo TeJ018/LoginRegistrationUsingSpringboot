@@ -1,6 +1,8 @@
 package net.codejava;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -12,9 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class AppController {
-	@Autowired(required=false)
+	
+	@Autowired //by default it is true
  	private UserRepository repo;
- 	
+	
+	/*
+	 * @Bean UserService userservice() { if (repo == null) { return new
+	 * UserService(new Userrepository("repo")); } return new UserService(repo); }
+	 */
 	
 //	@RequestMapping(value = "/", method = RequestMethod.GET) /* check this */
 //	public String getHomePage(){
@@ -35,8 +42,8 @@ public class AppController {
 	
 	@PostMapping("/process_register")
 	public String processRegistration(User user) {
-		repo.save(user);
 		
+		repo.save(user);
 		return "register_success";
 	}
 	
