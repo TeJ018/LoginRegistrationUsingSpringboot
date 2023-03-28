@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Repository;
+
 @Entity
 @Table(name = "users")
+@Repository
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
